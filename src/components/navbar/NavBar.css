@@ -169,9 +169,11 @@
 .tv-username {
   font-weight: 700;
   font-size: 14px;
+  color: #111;
 }
 .tv-caret {
   transition: transform 0.15s ease;
+  color: #111;
 }
 .tv-caret.up {
   transform: rotate(180deg);
@@ -202,7 +204,7 @@
 .tv-menu li {
   border-radius: 8px;
 }
-.tv-menu a,
+.tv-menu div,
 .tv-menu button {
   width: 100%;
   text-align: left;
@@ -215,8 +217,27 @@
   font-size: 14px;
   padding: 10px 10px;
   border-radius: 8px;
+  /* border: 1px solid red; */
 }
-.tv-menu a:hover,
+.tv-menu button {
+  padding: 4px 10px;
+}
+.tv-menu div a {
+  text-decoration: none;
+  color: #111;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  color: #111;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 10px;
+  border-radius: 8px;
+}
+.tv-menu div:hover,
 .tv-menu button:hover {
   background: #f7f7f7;
 }

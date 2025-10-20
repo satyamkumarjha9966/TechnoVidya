@@ -40,7 +40,8 @@ export default function NavBar() {
       <div className="tv-container">
         {/* Left: Brand */}
         <div className="tv-left">
-          <button
+          {/* // Small Screen Menu bar Button  */}
+          {/* <button
             className={"tv-burger" + (menuOpen ? " is-open" : "")}
             aria-label="Toggle navigation"
             aria-expanded={menuOpen}
@@ -49,7 +50,7 @@ export default function NavBar() {
             <span></span>
             <span></span>
             <span></span>
-          </button>
+          </button> */}
 
           <a
             href="#"
@@ -65,7 +66,8 @@ export default function NavBar() {
         </div>
 
         {/* Center: Nav links (desktop) */}
-        <nav className="tv-nav" aria-label="Main">
+        {/* // Big Screen Menu Bar Buttons  */}
+        {/* <nav className="tv-nav" aria-label="Main">
           <a
             href="#"
             onClick={(e) => {
@@ -92,7 +94,6 @@ export default function NavBar() {
               goto("/notifications");
             }}
           >
-            {/* Bell icon */}
             <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
               <path
                 fill="currentColor"
@@ -104,8 +105,8 @@ export default function NavBar() {
             </span>
             <span className="tv-link-text">Notification</span>
           </a>
-
-          {/* {token && (
+        </nav> */}
+        {/* {token && (
             <NavLink
               to="/dashboard"
               style={({ isActive }) => ({
@@ -125,7 +126,6 @@ export default function NavBar() {
               Admin Dashboard
             </NavLink>
           )} */}
-        </nav>
 
         {/* Right: Profile */}
         <div className="tv-right" ref={profileRef}>
@@ -153,7 +153,7 @@ export default function NavBar() {
                 d="M12 12a5 5 0 1 0-5-5a5 5 0 0 0 5 5Zm0 2c-4.33 0-8 2.17-8 5v1h16v-1c0-2.83-3.67-5-8-5Z"
               />
             </svg>
-            <span className="tv-username">Profile</span>
+            {/* <span className="tv-username">Profile</span> */}
             <svg
               className={"tv-caret" + (profileOpen ? " up" : "")}
               width="16"
@@ -168,49 +168,57 @@ export default function NavBar() {
           {/* Dropdown */}
           <ul className={"tv-menu" + (profileOpen ? " show" : "")} role="menu">
             <li role="menuitem">
-              <a
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  goto("/profile");
-                }}
-              >
-                View Profile
-              </a>
+              <div>
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    goto("/profile");
+                  }}
+                >
+                  View Profile
+                </a>
+              </div>
             </li>
             <li role="menuitem">
-              <a
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  goto("/settings");
-                }}
-              >
-                Settings
-              </a>
+              <div>
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    goto("/settings");
+                  }}
+                >
+                  Settings
+                </a>
+              </div>
             </li>
             <li role="menuitem">
-              <a
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  goto("/courses");
-                }}
-              >
-                Courses
-              </a>
+              <div>
+                <a
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    goto("/courses");
+                  }}
+                >
+                  Courses
+                </a>
+              </div>
             </li>
             <li role="menuitem" className="tv-danger">
-              <button
-                type="button"
-                onClick={() => {
-                  console.log("Logout");
-                  // await fetch('/api/auth/logout', { method:'POST' });
-                  goto("/signin");
-                }}
-              >
-                Logout
-              </button>
+              <div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    console.log("Logout");
+                    // await fetch('/api/auth/logout', { method:'POST' });
+                    goto("/signin");
+                  }}
+                >
+                  Logout
+                </button>
+              </div>
             </li>
           </ul>
         </div>
