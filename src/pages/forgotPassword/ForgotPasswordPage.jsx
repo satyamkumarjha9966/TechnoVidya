@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./ForgotPasswordPage.css";
+import { Link } from "react-router-dom";
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState("");
@@ -155,9 +156,9 @@ export default function ForgotPasswordPage() {
 
             <p className="fp-foot">
               Remembered your password?{" "}
-              <a href="#" className="fp-link">
+              <Link to="/signin" className="fp-link">
                 Sign In
-              </a>
+              </Link>
             </p>
           </form>
         </div>
