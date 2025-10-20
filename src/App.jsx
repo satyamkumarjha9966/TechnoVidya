@@ -10,7 +10,9 @@ function App() {
   const navigate = useNavigate();
   const isUserLoggedIn = () => {
     if (!token) {
-      navigate("/login");
+      if (!window.location.pathname.startsWith("/reset-password")) {
+        navigate("/signin");
+      }
     }
   };
 
@@ -19,7 +21,7 @@ function App() {
   }, []);
   return (
     <>
-      <Navbar />
+      {token && <Navbar />}
       <Routing />
     </>
   );

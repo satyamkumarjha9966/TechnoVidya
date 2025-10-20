@@ -9,12 +9,25 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* background-color: #242424; */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --orange: #ff7a00;
+  --orange-hover: #e56c00;
+  --black: #1f1f1f;
+  --bg: #ffffff;
+  --panel: #f5f5f5;
+  --muted: #6b7280;
+  --error: #d92d20;
+  --ring: #ff7a00;
+  --radius: 14px;
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  --shadow-glow: 0 0 0 2px rgba(255, 122, 0, 0.15),
+    0 10px 30px rgba(255, 122, 0, 0.15);
 }
 
 a {

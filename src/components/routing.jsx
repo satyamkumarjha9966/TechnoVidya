@@ -1,20 +1,27 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
-import Login from "../pages/Login";
-import Signup from "../pages/Signup";
 import Dashboard from "../pages/Dashboard";
 import ProtectedRoute from "./ProtectedRoute";
 import NotFound from "../pages/NotFound";
 import AccessDenied from "../pages/AccessDenied";
 import AdminDashboard from "../pages/AdminDashboard";
+import SignUpPage from "../pages/signUp/SignUpPage";
+import SignInPage from "../pages/signIn/SignInPage";
+import ForgotPasswordPage from "../pages/forgotPassword/ForgotPasswordPage";
+import ResetPasswordPage from "../pages/resetPassword/ResetPasswordPage";
 
 function Routing() {
   return (
     <>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/signin" element={<SignInPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
+        <Route
+          path="/reset-password/:resetToken"
+          element={<ResetPasswordPage />}
+        />
+        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
         <Route
           path="/dashboard"
           element={
