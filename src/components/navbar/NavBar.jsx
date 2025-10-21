@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./NavBar.css";
+import technoVidyaLogo from "../../assets/technoVidyaLogo.png";
+import { Link } from "react-router-dom";
 
 export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -52,17 +54,11 @@ export default function NavBar() {
             <span></span>
           </button> */}
 
-          <a
-            href="#"
-            className="tv-brand"
-            onClick={(e) => {
-              e.preventDefault();
-              goto("/");
-            }}
-          >
-            <span className="tv-dot" aria-hidden="true"></span>
-            <span className="tv-name">TechnoVidya</span>
-          </a>
+          <Link to="/" className="tv-brand">
+            {/* <span className="tv-dot" aria-hidden="true"></span> */}
+            <img src={technoVidyaLogo} alt="" height={80} width={80} />
+            {/* <span className="tv-name">TechnoVidya</span> */}
+          </Link>
         </div>
 
         {/* Center: Nav links (desktop) */}
@@ -169,18 +165,10 @@ export default function NavBar() {
           <ul className={"tv-menu" + (profileOpen ? " show" : "")} role="menu">
             <li role="menuitem">
               <div>
-                <a
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    goto("/profile");
-                  }}
-                >
-                  View Profile
-                </a>
+                <Link to="/profile">View Profile</Link>
               </div>
             </li>
-            <li role="menuitem">
+            {/* <li role="menuitem">
               <div>
                 <a
                   href="#"
@@ -192,18 +180,10 @@ export default function NavBar() {
                   Settings
                 </a>
               </div>
-            </li>
+            </li> */}
             <li role="menuitem">
               <div>
-                <a
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    goto("/courses");
-                  }}
-                >
-                  Courses
-                </a>
+                <Link to="/">Courses</Link>
               </div>
             </li>
             <li role="menuitem" className="tv-danger">
@@ -225,7 +205,7 @@ export default function NavBar() {
       </div>
 
       {/* Mobile drawer */}
-      <div
+      {/* <div
         className={"tv-drawer" + (menuOpen ? " open" : "")}
         aria-hidden={!menuOpen}
       >
@@ -258,7 +238,7 @@ export default function NavBar() {
             Notification
           </a>
         </nav>
-      </div>
+      </div> */}
     </header>
   );
 }
