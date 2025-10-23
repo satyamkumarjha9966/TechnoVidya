@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./SignUpPage.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { signUp } from "../../apis/auth";
 
 export default function SignUpPage() {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -66,11 +68,17 @@ export default function SignUpPage() {
 
     try {
       // TODO: Replace with your API call
-      // await fetch('/api/auth/signup', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(form) });
-      await new Promise((r) => setTimeout(r, 1200));
-      showToast("Account created! Redirecting…");
-      setLoading(false);
-      // window.location.href = "/dashboard";
+      const res = await signUp(form);
+      if (res.success) {
+        showToast("Account created! Redirecting…");
+        setLoading(false);
+        setTimeout(() => {
+          navigate("/signin");
+        }, 1500);
+      } else {
+          setLoading(false);
+          showToast(res.error.message);
+      }
     } catch (err) {
       setLoading(false);
       showToast("Something went wrong. Please try again.");

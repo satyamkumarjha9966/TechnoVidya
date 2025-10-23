@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./ForgotPasswordPage.css";
 import { Link } from "react-router-dom";
+import { forgotPassword } from "../../apis/auth";
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
+  const [sent, setSent] = useState(true);
   const [toast, setToast] = useState("");
   const [error, setError] = useState("");
 
@@ -44,13 +46,15 @@ export default function ForgotPasswordPage() {
     setLoading(true);
     try {
       // TODO: Replace with real API call to request a reset link
-      // await fetch('/api/auth/forgot-password', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ email: v }) });
-      await new Promise((r) => setTimeout(r, 1200));
-
-      setLoading(false);
-      showToast("Reset link sent! Check your inbox.");
-      // Optionally navigate to a "check your email" screen
-      // window.location.href = "/signin";
+      const res = await forgotPassword({email});
+      if (res.success) {
+        setLoading(false);
+        setSent(true);
+        showToast("Reset link sent! Check your inbox.");
+      } else {
+        setLoading(false);
+        showToast("Error in Forgot Password.")
+      }
     } catch (err) {
       setLoading(false);
       setError("Something went wrong. Please try again.");
@@ -120,6 +124,16 @@ export default function ForgotPasswordPage() {
           <p className="fp-subtitle">
             Enter your email and we’ll send you a secure link to reset it.
           </p>
+
+          {sent && (
+              <div className="fp-toast">
+                <span className="dot" />
+                <div>
+                  <strong>Link sent.</strong> Check <em>{email}</em> for
+                  instructions.
+                </div>
+              </div>
+          )}
 
           <form className="fp-form" onSubmit={onSubmit} noValidate>
             {/* Email only (exactly one field) */}

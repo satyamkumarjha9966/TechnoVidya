@@ -2,8 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import "./NavBar.css";
 import technoVidyaLogo from "../../assets/technoVidyaLogo.png";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { clearAuth } from "../../store/slices/authSlice";
 
 export default function NavBar() {
+  const dispath = useDispatch();
   const [menuOpen, setMenuOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
   const profileRef = useRef(null);
@@ -31,11 +34,15 @@ export default function NavBar() {
 
   // Demo handlers (replace with your router/navigation)
   const goto = (path) => {
-    // window.location.href = path;
-    console.log("Navigate to:", path);
+    window.location.href = path;
     setMenuOpen(false);
     setProfileOpen(false);
   };
+
+  const handleLogout = () => {
+    dispath(clearAuth())
+    goto("/signin");
+  }
 
   return (
     <header className="tv-navbar">
@@ -190,11 +197,7 @@ export default function NavBar() {
               <div>
                 <button
                   type="button"
-                  onClick={() => {
-                    console.log("Logout");
-                    // await fetch('/api/auth/logout', { method:'POST' });
-                    goto("/signin");
-                  }}
+                  onClick={handleLogout}
                 >
                   Logout
                 </button>

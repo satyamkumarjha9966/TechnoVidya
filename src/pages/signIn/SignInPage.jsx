@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "./SignInPage.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { signIn } from "../../apis/auth";
+import { useDispatch } from "react-redux";
+import { setToken, setUser } from "../../store/slices/authSlice";
 
 export default function SignInPage() {
+  const dispath = useDispatch();
+  const navigate = useNavigate();
   const [form, setForm] = useState({
-    identifier: "",
+    email: "",
     password: "",
     remember: true,
   });
@@ -25,10 +30,10 @@ export default function SignInPage() {
   const [rotIdx, setRotIdx] = useState(0);
 
   useEffect(() => {
-    // Restore remembered identifier
-    const remembered = localStorage.getItem("lms_identifier");
+    // Restore remembered email
+    const remembered = localStorage.getItem("email");
     if (remembered) {
-      setForm((f) => ({ ...f, identifier: remembered }));
+      setForm((f) => ({ ...f, email: remembered }));
     }
     // Carousel
     const id = setInterval(() => {
@@ -48,12 +53,12 @@ export default function SignInPage() {
 
   function validate() {
     const er = {};
-    const id = form.identifier.trim();
-    if (!id) er.identifier = "Please enter your email or username.";
+    const id = form.email.trim();
+    if (!id) er.email = "Please enter your email or username.";
     else if (id.includes("@") && !isEmailLike(id))
-      er.identifier = "Please enter a valid email address.";
+      er.email = "Please enter a valid email address.";
     else if (!id.includes("@") && !isUsername(id))
-      er.identifier =
+      er.email =
         "Username must be 3+ characters (letters, numbers, ., _, -).";
 
     if (!form.password) er.password = "Password is required.";
@@ -74,16 +79,27 @@ export default function SignInPage() {
 
     try {
       if (form.remember) {
-        localStorage.setItem("lms_identifier", form.identifier.trim());
+        localStorage.setItem("email", form.email.trim());
       } else {
-        localStorage.removeItem("lms_identifier");
+        localStorage.removeItem("email");
       }
 
       // TODO: Replace with real API call
-      await new Promise((r) => setTimeout(r, 1200));
-      showToast("Signed in successfully! Redirecting…");
-      setLoading(false);
-      // window.location.href = "/dashboard";
+      const res = await signIn(form);
+      if (res.success) {
+        // expecting res.data to include token and user
+        const token = res.data?.token || null;
+        const user = res.data?.user || null;
+        // Save to Redux store
+        if (token) dispath(setToken(token));
+        if (user) dispath(setUser(user));
+        setLoading(false);
+        showToast("Signed in successfully! Redirecting…");
+        navigate("/");
+      } else {
+        setLoading(false);
+        showToast(res.error.message);
+      }
     } catch (err) {
       setLoading(false);
       setErrors((er) => ({
@@ -166,30 +182,30 @@ export default function SignInPage() {
           <form className="si-form" onSubmit={onSubmit} noValidate>
             {/* Email / Username */}
             <div className="si-field">
-              <label htmlFor="identifier">Email or Username</label>
+              <label htmlFor="email">Email or Username</label>
               <div
                 className={
-                  "si-inputwrap" + (errors.identifier ? " si-err" : "")
+                  "si-inputwrap" + (errors.email ? " si-err" : "")
                 }
               >
                 <input
-                  id="identifier"
-                  name="identifier"
+                  id="email"
+                  name="email"
                   type="text"
                   inputMode="email"
                   placeholder="Enter your email or username"
                   autoComplete="username"
-                  value={form.identifier}
+                  value={form.email}
                   onChange={onChange}
                   required
                 />
               </div>
               <p
                 className={
-                  "si-help" + (errors.identifier ? " si-help-err" : "")
+                  "si-help" + (errors.email ? " si-help-err" : "")
                 }
               >
-                {errors.identifier || ""}
+                {errors.email || ""}
               </p>
             </div>
 

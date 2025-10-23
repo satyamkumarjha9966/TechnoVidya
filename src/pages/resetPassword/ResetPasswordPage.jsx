@@ -1,32 +1,35 @@
 import React, { useEffect, useMemo, useState } from "react";
 import "./ResetPasswordPage.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { resetPassword } from "../../apis/auth";
 
 // Helper: get URL param (works with any router)
-function getQueryParam(name) {
-  const params = new URLSearchParams(window.location.search);
-  return params.get(name);
-}
+// function getQueryParam(name) {
+//   const params = new URLSearchParams(window.location.search);
+//   return params.get(name);
+// }
 
 export default function ResetPasswordPage() {
+  const navigate = useNavigate();
+  const { resetToken } = useParams();
   const [password, setPassword] = useState("");
-  const [confirm, setConfirm] = useState("");
+  const [confirmPassword, setConfirm] = useState("");
   const [showPwd1, setShowPwd1] = useState(false);
   const [showPwd2, setShowPwd2] = useState(false);
   const [errors, setErrors] = useState({
     password: "",
-    confirm: "",
+    confirmPassword: "",
     token: "",
   });
   const [loading, setLoading] = useState(false);
   const [toast, setToast] = useState("");
 
   // Token from URL (?token=...)
-  const token = useMemo(() => getQueryParam("token") || "", []);
-  useEffect(() => {
-    if (!token)
-      setErrors((e) => ({ ...e, token: "Invalid or missing reset link." }));
-  }, [token]);
+  // const token = useMemo(() => getQueryParam("token") || "", []);
+  // useEffect(() => {
+  //   if (!token)
+  //     setErrors((e) => ({ ...e, token: "Invalid or missing reset link." }));
+  // }, [token]);
 
   // Rotating headline
   const courses = [
@@ -59,14 +62,14 @@ export default function ResetPasswordPage() {
   }, [password]);
 
   function validate() {
-    const er = { password: "", confirm: "", token: "" };
-    if (!token) er.token = "Invalid or missing reset link.";
+    const er = { password: "", confirmPassword: "", token: "" };
+    // if (!token) er.token = "Invalid or missing reset link.";
     if (!password) er.password = "New password is required.";
     else if (password.length < 8) er.password = "Minimum 8 characters.";
-    if (!confirm) er.confirm = "Please confirm your password.";
-    else if (confirm !== password) er.confirm = "Passwords do not match.";
+    if (!confirmPassword) er.confirmPassword = "Please confirmPassword your password.";
+    else if (confirmPassword !== password) er.confirmPassword = "Passwords do not match.";
     setErrors(er);
-    return !er.token && !er.password && !er.confirm;
+    return !er.token && !er.password && !er.confirmPassword;
   }
 
   function showToast(msg) {
@@ -80,21 +83,24 @@ export default function ResetPasswordPage() {
     setLoading(true);
     try {
       // TODO: Replace with your real API call:
-      // await fetch('/api/auth/reset-password', {
-      //   method:'POST',
-      //   headers:{'Content-Type':'application/json'},
-      //   body: JSON.stringify({ token, password })
-      // });
-      await new Promise((r) => setTimeout(r, 1200)); // demo
-      setLoading(false);
-      showToast("Password updated! You can now sign in.");
-      // window.location.href = "/signin";
+      const res = await resetPassword({ password, confirmPassword, resetToken});
+      if (res.success) {
+        setLoading(false);
+        showToast("Password updated! You can now sign in.");
+        navigate("/signin");
+      } else {
+        setLoading(false);
+        setErrors("This reset link is invalid or expired.");
+        showToast("This reset link is invalid or expired.");
+        showToast(res.data.message);
+      }
     } catch (err) {
       setLoading(false);
       setErrors((er) => ({
         ...er,
         token: "This reset link is invalid or expired.",
       }));
+      showToast(err.response.data.message)
     }
   }
 
@@ -159,7 +165,7 @@ export default function ResetPasswordPage() {
         <div className="rp-card" role="region" aria-labelledby="rp-card-title">
           <h2 id="rp-card-title">Reset your password</h2>
           <p className="rp-subtitle">
-            Create a strong password and confirm it to continue.
+            Create a strong password and confirmPassword it to continue.
           </p>
 
           {/* Token error banner (if any) */}
@@ -220,22 +226,22 @@ export default function ResetPasswordPage() {
 
             {/* Confirm Password */}
             <div className="rp-field">
-              <label htmlFor="confirm">Confirm Password</label>
+              <label htmlFor="confirmPassword">Confirm Password</label>
               <div
                 className={
-                  "rp-inputwrap rp-pwd" + (errors.confirm ? " rp-err" : "")
+                  "rp-inputwrap rp-pwd" + (errors.confirmPassword ? " rp-err" : "")
                 }
               >
                 <input
-                  id="confirm"
-                  name="confirm"
+                  id="confirmPassword"
+                  name="confirmPassword"
                   type={showPwd2 ? "text" : "password"}
                   placeholder="Re-enter new password"
                   autoComplete="new-password"
-                  value={confirm}
+                  value={confirmPassword}
                   onChange={(e) => {
                     setConfirm(e.target.value);
-                    setErrors((er) => ({ ...er, confirm: "" }));
+                    setErrors((er) => ({ ...er, confirmPassword: "" }));
                   }}
                   required
                   minLength={8}
@@ -250,8 +256,8 @@ export default function ResetPasswordPage() {
                   {showPwd2 ? "Hide" : "Show"}
                 </button>
               </div>
-              <p className={"rp-help" + (errors.confirm ? " rp-help-err" : "")}>
-                {errors.confirm || ""}
+              <p className={"rp-help" + (errors.confirmPassword ? " rp-help-err" : "")}>
+                {errors.confirmPassword || ""}
               </p>
             </div>
 

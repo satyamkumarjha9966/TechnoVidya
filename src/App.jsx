@@ -21,7 +21,7 @@ function App() {
   }, []);
   return (
     <>
-      {token && <NavBar />}
+      {token && !window.location.pathname.startsWith("/course") && <NavBar />}
       <Routing />
     </>
   );

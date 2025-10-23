@@ -1,5 +1,5 @@
 :root {
-  --left-w: 250px; /* fixed left column */
+  --left-w: 100px; /* fixed left column */
   --mid-w: 360px; /* open middle width */
   --gap: 12px;
 
@@ -19,8 +19,8 @@
 .cdp-shell {
   display: flex;
   align-items: stretch;
-  gap: var(--gap);
-  padding: 14px;
+  gap: 4px;
+  /* padding: 14px; */
   background: #fff;
   color: var(--ink);
   font-family: Inter, Poppins, system-ui, -apple-system, Segoe UI, Roboto, Arial,
@@ -34,11 +34,11 @@
   max-height: calc(100dvh - 28px);
   display: flex;
   flex-direction: column;
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: var(--rad-lg);
+  background: var(--ink);
+  /* border: 1px solid var(--border); */
+  /* border-radius: var(--rad-lg); */
   box-shadow: var(--shadow);
-  overflow: auto;
+  /* overflow: auto; */
   scrollbar-gutter: stable;
 }
 .cdp-left-title {
@@ -71,7 +71,7 @@
   height: 6px;
   background: #eee;
   border-radius: 999px;
-  margin-top: 8px;
+  /* margin-top: 8px; */
   overflow: hidden;
 }
 .cdp-kpi-bar span {
@@ -82,16 +82,22 @@
 
 .cdp-left-stack {
   display: grid;
-  gap: 8px;
-  padding: 8px 12px 12px;
+  /* gap: 8px; */
+  /* padding: 8px 12px 12px; */
+}
+.cdp-left-stack-button {
+  position: absolute;
+  left: 85px;
+  top: 130px;
 }
 .cdp-secbtn {
-  text-align: left;
-  font-weight: 800;
+  text-align: center;
+  height: 90px;
+  font-weight: 700;
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: 0px;
   background: #fff;
-  padding: 10px 12px;
+  /* padding: 10px 12px; */
   cursor: pointer;
   transition: background 0.15s ease, box-shadow 0.15s ease,
     border-color 0.15s ease;
@@ -112,6 +118,7 @@
   flex-wrap: wrap;
   padding: 10px 12px 12px;
   margin-top: auto;
+  border: 1px solid red;
 }
 .cdp-pill {
   background: #111;
@@ -137,7 +144,7 @@
   min-width: 0;
   background: #fff;
   border: 1px solid var(--border);
-  border-radius: var(--rad-lg);
+  /* border-radius: var(--rad-lg); */
   box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
@@ -172,6 +179,7 @@
   border-radius: 8px;
   padding: 6px;
   cursor: pointer;
+  z-index: 100;
 }
 .cdp-mid-scroll {
   overflow: auto;
@@ -260,10 +268,10 @@
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  border: 1px solid var(--border);
-  border-radius: var(--rad-lg);
-  padding: 12px;
-  background: #fff;
+  /* border: 1px solid var(--border); */
+  /* border-radius: var(--rad-lg); */
+  padding: 20px 40px;
+  background: var(--ink);
   box-shadow: var(--shadow);
 }
 .cdp-right-titles h2 {
@@ -289,6 +297,7 @@
   border-radius: 999px;
   overflow: hidden;
   border: 1px solid #e5e7eb;
+  display: flex;
 }
 .cdp-kpi-bar.big span {
   display: block;
@@ -304,7 +313,7 @@
 /* Content cards */
 .cdp-card {
   border: 1px solid var(--border);
-  border-radius: var(--rad-lg);
+  /* border-radius: var(--rad-lg); */
   background: #fff;
   box-shadow: var(--shadow);
   padding: 14px;
