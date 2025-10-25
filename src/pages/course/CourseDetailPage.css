@@ -25,6 +25,7 @@
   color: var(--ink);
   font-family: Inter, Poppins, system-ui, -apple-system, Segoe UI, Roboto, Arial,
     sans-serif;
+  height: calc(100dvh - 95px);
 }
 
 /* ===== LEFT (fixed) ===== */
@@ -93,22 +94,38 @@
 .cdp-secbtn {
   text-align: center;
   height: 90px;
-  font-weight: 700;
-  border: 1px solid var(--border);
+  font-weight: 600;
+  color: var(--border);
+  outline: none;
+  border: none;
+  outline: none;
   border-radius: 0px;
-  background: #fff;
+  background: var(--ink);
   /* padding: 10px 12px; */
   cursor: pointer;
-  transition: background 0.15s ease, box-shadow 0.15s ease,
-    border-color 0.15s ease;
+  /* transition: background 0.15s ease, box-shadow 0.15s ease,
+    border-color 0.15s ease; */
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  align-items: center;
+  font-size: 15px;
+  padding: 4px;
+  justify-content: center;
+  line-height: 16px;
 }
 .cdp-secbtn:hover {
-  background: #fafafa;
+  /* background: #fafafa; */
+  box-shadow: none;
+  border: none;
 }
 .cdp-secbtn.active {
-  background: #fff7f0;
-  border-color: #ffd8b4;
-  box-shadow: 0 8px 16px rgba(255, 122, 0, 0.16);
+  background-color: var(--orange);
+  /* border-color: #ffd8b4; */
+  outline: none;
+  color: var(--bg);
+  box-shadow: none;
 }
 
 .cdp-left-foot {
@@ -183,15 +200,17 @@
 }
 .cdp-mid-scroll {
   overflow: auto;
+  scrollbar-width: thin;
   padding: 10px;
-  scrollbar-gutter: stable;
+  /* scrollbar-gutter: stable; */
 }
 .cdp-module {
   border: 1px solid var(--border);
   border-radius: 12px;
-  padding: 10px;
+  padding: 15px 12px;
   background: #fff;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.04);
+  cursor: pointer;
 }
 .cdp-module + .cdp-module {
   margin-top: 10px;
@@ -201,17 +220,64 @@
   align-items: center;
   justify-content: space-between;
   gap: 10px;
+  /* margin-bottom: 10px; */
 }
 .cdp-module-title {
   margin: 0;
   font-size: 14px;
-  font-weight: 800;
+  font-weight: 700;
+  max-width: 17rem; /* set width */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.cdp-lession-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 2px;
+}
+.cdp-lession-top:hover {
+  background-color: #f9f9f9;
+  border-radius: 6px;
+}
+.selected-cdp-lession-top {
+  background-color: var(--border) !important;
+  border-radius: 4px;
+}
+.cdp-lession-title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  max-width: 16rem; /* set width */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.selected-cdp-lession-title {
+  color: var(--orange);
+  font-weight: 700;
+}
+.cdp-lession-cont {
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 10px;
+}
+.cdp-lession-status {
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 6px;
+  padding: 4px 8px;
+  /* border: 1px solid #e5e7eb; */
 }
 .cdp-status {
   font-size: 12px;
   font-weight: 800;
-  border-radius: 999px;
-  padding: 4px 8px;
+  border-radius: 6px;
+  padding: 4px;
   border: 1px solid #e5e7eb;
 }
 .cdp-status.inprogress {
@@ -273,6 +339,7 @@
   padding: 20px 40px;
   background: var(--ink);
   box-shadow: var(--shadow);
+  height: 95px;
 }
 .cdp-right-titles h2 {
   margin: 0;
@@ -317,6 +384,7 @@
   background: #fff;
   box-shadow: var(--shadow);
   padding: 14px;
+  height: 100%;
 }
 .cdp-desc {
   color: var(--muted);
@@ -335,10 +403,12 @@
   border: 1px solid var(--border);
   border-radius: 12px;
   overflow: hidden;
+  height: 100%;
   background: #111;
 }
 .cdp-video {
   width: 100%;
+  height: 100%;
   aspect-ratio: 16/9;
 }
 .cdp-pdf-wrap {

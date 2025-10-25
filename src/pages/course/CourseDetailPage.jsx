@@ -12,48 +12,179 @@ const course = {
   modules: [
     {
       id: "m1",
-      title: "Module 1 — Cloud Basics",
-      done: 6,
-      total: 12,
-      status: "In Progress",
+      title: "Introduction To Cloud and AWS ",
+      lessons: [
+        {
+          id: "m1l1",
+          title: "  Introduction to Cloud Computing and AWS",
+          kind: "video",
+          duration: "12:45",
+          src: "https://www.w3schools.com/html/mov_bbb.mp4",
+        },
+        {
+          id: "m1l2",
+          title: "  Deployment and Service Models",
+          kind: "video",
+          duration: "09:12",
+          src: "https://www.w3schools.com/html/movie.mp4",
+        },
+        {
+          id: "m1l3",
+          title: "Virtualization & Hypervisors",
+          kind: "pdf",
+          duration: "09:00",
+          src: "https://arxiv.org/pdf/1707.08567.pdf",
+        },
+        {
+          id: "m1l4",
+          title: "AWS Suite (With Analogy)",
+          kind: "video",
+          duration: "07:04",
+          src: "https://www.w3schools.com/html/mov_bbb.mp4",
+        },
+        {
+          id: "m1l5",
+          title: "AWS Well-Architected Framework",
+          kind: "video",
+          duration: "11:00",
+          src: "https://www.w3schools.com/html/movie.mp4",
+        },
+      ],
     },
     {
       id: "m2",
-      title: "Module 2 — EC2 & Storage",
-      done: 2,
-      total: 10,
-      status: "Assigned",
+      title: "EC2 and File Systems",
+      lessons: [
+        {
+          id: "m2l1",
+          title: "EC2 Basics",
+          kind: "video",
+          duration: "08:34",
+          src: "https://www.w3schools.com/html/mov_bbb.mp4",
+        },
+        {
+          id: "m2l2",
+          title: "EBS & EFS",
+          kind: "pdf",
+          duration: "12:11",
+          src: "https://arxiv.org/pdf/2107.08950.pdf",
+        },
+      ],
     },
     {
       id: "m3",
-      title: "Module 3 — Load Balancing",
-      done: 10,
-      total: 10,
-      status: "Completed",
+      title: "Load Balancing",
+      lessons: [
+        {
+          id: "m3l1",
+          title: "ELB Overview",
+          kind: "video",
+          duration: "06:28",
+          src: "https://www.w3schools.com/html/movie.mp4",
+        },
+      ],
     },
     {
       id: "m4",
-      title: "Module 4 — VPC & Networking",
-      done: 0,
-      total: 9,
-      status: "Not Started",
+      title: "Introduction To Cloud and AWS ",
+      lessons: [
+        {
+          id: "m4l1",
+          title: "  Introduction to Cloud Computing and AWS",
+          kind: "video",
+          duration: "12:45",
+          src: "https://www.w3schools.com/html/mov_bbb.mp4",
+        },
+        {
+          id: "m4l2",
+          title: "  Deployment and Service Models",
+          kind: "video",
+          duration: "09:12",
+          src: "https://www.w3schools.com/html/movie.mp4",
+        },
+        {
+          id: "m4l3",
+          title: "Virtualization & Hypervisors",
+          kind: "pdf",
+          duration: "09:00",
+          src: "https://arxiv.org/pdf/1707.08567.pdf",
+        },
+        {
+          id: "m4l4",
+          title: "AWS Suite (With Analogy)",
+          kind: "video",
+          duration: "07:04",
+          src: "https://www.w3schools.com/html/mov_bbb.mp4",
+        },
+        {
+          id: "m4l5",
+          title: "AWS Well-Architected Framework",
+          kind: "video",
+          duration: "11:00",
+          src: "https://www.w3schools.com/html/movie.mp4",
+        },
+      ],
+    },
+    {
+      id: "m5",
+      title: "EC2 and File Systems",
+      lessons: [
+        {
+          id: "m5l1",
+          title: "EC2 Basics",
+          kind: "video",
+          duration: "08:34",
+          src: "https://www.w3schools.com/html/mov_bbb.mp4",
+        },
+        {
+          id: "m5l2",
+          title: "EBS & EFS",
+          kind: "pdf",
+          duration: "12:11",
+          src: "https://arxiv.org/pdf/2107.08950.pdf",
+        },
+      ],
+    },
+    {
+      id: "m6",
+      title: "Load Balancing",
+      lessons: [
+        {
+          id: "m6l1",
+          title: "ELB Overview",
+          kind: "video",
+          duration: "06:28",
+          src: "https://www.w3schools.com/html/movie.mp4",
+        },
+      ],
     },
   ],
 };
 
-const SectionBtn = ({ active, label, onClick }) => (
-  <button
+const SectionBtn = ({ icon, active, label, onClick }) => (
+  <div
     className={`cdp-secbtn${active ? " active" : ""}`}
     aria-current={active ? "page" : undefined}
     onClick={onClick}
   >
-    {label}
-  </button>
+    <span style={{ fontSize: "20px", marginBottom: "8px" }}>{icon}</span>
+    <span>{label}</span>
+  </div>
 );
 
 export default function CourseDetailPage() {
   const [activeSection, setActiveSection] = useState("LIVECLASSES"); // LIVECLASSES | Self-Paced | Study Materials
   const [midOpen, setMidOpen] = useState(true);
+  const [opendModule, setOpenedModule] = useState([]);
+  const [selectedLesson, setSelectedLesson] = useState(null);
+
+  const toggleModule = (moduleId) => {
+    if (opendModule.includes(moduleId)) {
+      setOpenedModule(opendModule.filter((id) => id !== moduleId));
+    } else {
+      setOpenedModule([...opendModule, moduleId]);
+    }
+  };
 
   const stats = useMemo(() => {
     const total = course.modules.reduce((a, m) => a + m.total, 0);
@@ -132,7 +263,7 @@ export default function CourseDetailPage() {
           </div> */}
 
           <div className="cdp-left-stack">
-            {midOpen ? (
+            {/* {midOpen ? (
               <div></div>
             ) : (
               <div className="cdp-left-stack-button">
@@ -155,19 +286,22 @@ export default function CourseDetailPage() {
                   </svg>
                 </button>
               </div>
-            )}
+            )} */}
             <SectionBtn
-              label="LC"
+              icon="🛜"
+              label="LIVE CLASSES"
               active={activeSection === "LIVECLASSES"}
               onClick={() => setActiveSection("LIVECLASSES")}
             />
             <SectionBtn
-              label="SP"
+              icon="📼"
+              label="SELF PACED"
               active={activeSection === "Self-Paced"}
               onClick={() => setActiveSection("Self-Paced")}
             />
             <SectionBtn
-              label="SM"
+              icon="📄"
+              label="STUDY MATERIALS"
               active={activeSection === "Study Materials"}
               onClick={() => setActiveSection("Study Materials")}
             />
@@ -207,20 +341,20 @@ export default function CourseDetailPage() {
 
           <div className="cdp-mid-scroll">
             {course.modules.map((m) => {
-              const pct = Math.round((m.done / m.total) * 100);
               return (
                 <article key={m.id} className="cdp-module">
-                  <div className="cdp-module-top">
-                    <h4 className="cdp-module-title">{m.title}</h4>
-                    <span
-                      className={`cdp-status ${m.status
-                        .replace(" ", "")
-                        .toLowerCase()}`}
-                    >
-                      {m.status}
+                  <div
+                    className="cdp-module-top"
+                    onClick={() => toggleModule(m.id)}
+                  >
+                    <h4 className="cdp-module-title" title={m.title}>
+                      {m.title}
+                    </h4>
+                    <span className={`cdp-status`}>
+                      {opendModule.includes(m.id) ? "⬆️" : "⬇️"}
                     </span>
                   </div>
-                  <div className="cdp-progress">
+                  {/* <div className="cdp-progress">
                     <div
                       className="cdp-progress-bar"
                       style={{ width: `${pct}%` }}
@@ -231,7 +365,38 @@ export default function CourseDetailPage() {
                       {m.done}/{m.total} Units
                     </span>
                     <span>{pct}%</span>
-                  </div>
+                  </div> */}
+                  {opendModule.includes(m.id) && (
+                    <>
+                      <hr />
+                      <div className="cdp-lession-cont">
+                        {m.lessons.map((l) => (
+                          <div
+                            className={`cdp-lession-top${
+                              selectedLesson == l.id
+                                ? " selected-cdp-lession-top"
+                                : ""
+                            }`}
+                            onClick={() => setSelectedLesson(l.id)}
+                          >
+                            <h4
+                              className={`cdp-lession-title${
+                                selectedLesson == l.id
+                                  ? " selected-cdp-lession-title"
+                                  : ""
+                              }`}
+                              title={l.title}
+                            >
+                              📺 {l.title}
+                            </h4>
+                            <span className={`cdp-lession-status`}>
+                              {l.duration}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </>
+                  )}
                 </article>
               );
             })}
@@ -258,8 +423,8 @@ export default function CourseDetailPage() {
           )}
 
           {activeSection === "Self-Paced" && (
-            <div className="cdp-card">
-              <h3>Self-Paced Player</h3>
+            <div className="cdp-card" style={{ height: `94%` }}>
+              {/* <h3>Self-Paced Player</h3> */}
               <div className="cdp-video-wrap">
                 <video
                   className="cdp-video"
