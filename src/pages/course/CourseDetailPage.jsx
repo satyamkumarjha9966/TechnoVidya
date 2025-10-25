@@ -263,7 +263,7 @@ export default function CourseDetailPage() {
           </div> */}
 
           <div className="cdp-left-stack">
-            {/* {midOpen ? (
+            {midOpen ? (
               <div></div>
             ) : (
               <div className="cdp-left-stack-button">
@@ -286,7 +286,7 @@ export default function CourseDetailPage() {
                   </svg>
                 </button>
               </div>
-            )} */}
+            )}
             <SectionBtn
               icon="🛜"
               label="LIVE CLASSES"
