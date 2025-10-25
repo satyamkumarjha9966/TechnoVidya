@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { act, useMemo, useState } from "react";
 import "./CourseDetailPage.css";
 import { Link } from "react-router-dom";
 
@@ -20,6 +20,8 @@ const course = {
           kind: "video",
           duration: "12:45",
           src: "https://www.w3schools.com/html/mov_bbb.mp4",
+          studyMaterial: "https://arxiv.org/pdf/1707.08567.pdf",
+          studyMaterialName: "Assignment 12",
         },
         {
           id: "m1l2",
@@ -27,6 +29,8 @@ const course = {
           kind: "video",
           duration: "09:12",
           src: "https://www.w3schools.com/html/movie.mp4",
+          studyMaterial: "https://arxiv.org/pdf/1707.08567.pdf",
+          studyMaterialName: "Assignment 12",
         },
         {
           id: "m1l3",
@@ -34,6 +38,8 @@ const course = {
           kind: "pdf",
           duration: "09:00",
           src: "https://arxiv.org/pdf/1707.08567.pdf",
+          studyMaterial: "https://arxiv.org/pdf/1707.08567.pdf",
+          studyMaterialName: "Assignment 12",
         },
         {
           id: "m1l4",
@@ -41,6 +47,8 @@ const course = {
           kind: "video",
           duration: "07:04",
           src: "https://www.w3schools.com/html/mov_bbb.mp4",
+          studyMaterial: "https://arxiv.org/pdf/1707.08567.pdf",
+          studyMaterialName: "Assignment 12",
         },
         {
           id: "m1l5",
@@ -48,6 +56,8 @@ const course = {
           kind: "video",
           duration: "11:00",
           src: "https://www.w3schools.com/html/movie.mp4",
+          studyMaterial: "https://arxiv.org/pdf/1707.08567.pdf",
+          studyMaterialName: "Assignment 12",
         },
       ],
     },
@@ -61,6 +71,8 @@ const course = {
           kind: "video",
           duration: "08:34",
           src: "https://www.w3schools.com/html/mov_bbb.mp4",
+          studyMaterial: "https://arxiv.org/pdf/1707.08567.pdf",
+          studyMaterialName: "Assignment 11",
         },
         {
           id: "m2l2",
@@ -68,6 +80,8 @@ const course = {
           kind: "pdf",
           duration: "12:11",
           src: "https://arxiv.org/pdf/2107.08950.pdf",
+          studyMaterial: "https://arxiv.org/pdf/1707.08567.pdf",
+          studyMaterialName: "Assignment 10",
         },
       ],
     },
@@ -81,6 +95,8 @@ const course = {
           kind: "video",
           duration: "06:28",
           src: "https://www.w3schools.com/html/movie.mp4",
+          studyMaterial: "https://arxiv.org/pdf/1707.08567.pdf",
+          studyMaterialName: "Assignment 8",
         },
       ],
     },
@@ -94,6 +110,8 @@ const course = {
           kind: "video",
           duration: "12:45",
           src: "https://www.w3schools.com/html/mov_bbb.mp4",
+          studyMaterial: "https://arxiv.org/pdf/1707.08567.pdf",
+          studyMaterialName: "Assignment 7",
         },
         {
           id: "m4l2",
@@ -101,6 +119,8 @@ const course = {
           kind: "video",
           duration: "09:12",
           src: "https://www.w3schools.com/html/movie.mp4",
+          studyMaterial: "https://arxiv.org/pdf/1707.08567.pdf",
+          studyMaterialName: "Assignment 6",
         },
         {
           id: "m4l3",
@@ -108,6 +128,8 @@ const course = {
           kind: "pdf",
           duration: "09:00",
           src: "https://arxiv.org/pdf/1707.08567.pdf",
+          studyMaterial: "https://arxiv.org/pdf/1707.08567.pdf",
+          studyMaterialName: "Assignment 5",
         },
         {
           id: "m4l4",
@@ -115,6 +137,8 @@ const course = {
           kind: "video",
           duration: "07:04",
           src: "https://www.w3schools.com/html/mov_bbb.mp4",
+          studyMaterial: "https://arxiv.org/pdf/1707.08567.pdf",
+          studyMaterialName: "Assignment 4",
         },
         {
           id: "m4l5",
@@ -122,6 +146,8 @@ const course = {
           kind: "video",
           duration: "11:00",
           src: "https://www.w3schools.com/html/movie.mp4",
+          studyMaterial: "https://arxiv.org/pdf/1707.08567.pdf",
+          studyMaterialName: "Assignment 3",
         },
       ],
     },
@@ -135,6 +161,8 @@ const course = {
           kind: "video",
           duration: "08:34",
           src: "https://www.w3schools.com/html/mov_bbb.mp4",
+          studyMaterial: "https://arxiv.org/pdf/1707.08567.pdf",
+          studyMaterialName: "Assignment 2",
         },
         {
           id: "m5l2",
@@ -142,6 +170,8 @@ const course = {
           kind: "pdf",
           duration: "12:11",
           src: "https://arxiv.org/pdf/2107.08950.pdf",
+          studyMaterial: "https://arxiv.org/pdf/1707.08567.pdf",
+          studyMaterialName: "Assignment 1",
         },
       ],
     },
@@ -155,6 +185,8 @@ const course = {
           kind: "video",
           duration: "06:28",
           src: "https://www.w3schools.com/html/movie.mp4",
+          studyMaterial: "https://arxiv.org/pdf/1707.08567.pdf",
+          studyMaterialName: "Assignment 1",
         },
       ],
     },
@@ -387,11 +419,15 @@ export default function CourseDetailPage() {
                               }`}
                               title={l.title}
                             >
-                              📺 {l.title}
+                              {activeSection === "Study Materials"
+                                ? `📄 ${l.studyMaterialName}`
+                                : `📺 ${l.title}`}
                             </h4>
-                            <span className={`cdp-lession-status`}>
-                              {l.duration}
-                            </span>
+                            {activeSection !== "Study Materials" && (
+                              <span className={`cdp-lession-status`}>
+                                {l.duration}
+                              </span>
+                            )}
                           </div>
                         ))}
                       </div>
