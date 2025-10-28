@@ -29,7 +29,7 @@ const course = {
           kind: "video",
           duration: "09:12",
           src: "https://www.w3schools.com/html/movie.mp4",
-          studyMaterial: "https://arxiv.org/pdf/1707.08567.pdf",
+          studyMaterial: "https://arxiv.org/pdf/1707.08561.pdf",
           studyMaterialName: "Assignment 12",
         },
         {
@@ -38,7 +38,7 @@ const course = {
           kind: "pdf",
           duration: "09:00",
           src: "https://arxiv.org/pdf/1707.08567.pdf",
-          studyMaterial: "https://arxiv.org/pdf/1707.08567.pdf",
+          studyMaterial: "https://arxiv.org/pdf/1707.08562.pdf",
           studyMaterialName: "Assignment 12",
         },
         {
@@ -47,7 +47,7 @@ const course = {
           kind: "video",
           duration: "07:04",
           src: "https://www.w3schools.com/html/mov_bbb.mp4",
-          studyMaterial: "https://arxiv.org/pdf/1707.08567.pdf",
+          studyMaterial: "https://arxiv.org/pdf/1707.08563.pdf",
           studyMaterialName: "Assignment 12",
         },
         {
@@ -56,7 +56,7 @@ const course = {
           kind: "video",
           duration: "11:00",
           src: "https://www.w3schools.com/html/movie.mp4",
-          studyMaterial: "https://arxiv.org/pdf/1707.08567.pdf",
+          studyMaterial: "https://arxiv.org/pdf/1707.08564.pdf",
           studyMaterialName: "Assignment 12",
         },
       ],
@@ -71,7 +71,7 @@ const course = {
           kind: "video",
           duration: "08:34",
           src: "https://www.w3schools.com/html/mov_bbb.mp4",
-          studyMaterial: "https://arxiv.org/pdf/1707.08567.pdf",
+          studyMaterial: "https://arxiv.org/pdf/1707.08565.pdf",
           studyMaterialName: "Assignment 11",
         },
         {
@@ -80,7 +80,7 @@ const course = {
           kind: "pdf",
           duration: "12:11",
           src: "https://arxiv.org/pdf/2107.08950.pdf",
-          studyMaterial: "https://arxiv.org/pdf/1707.08567.pdf",
+          studyMaterial: "https://arxiv.org/pdf/1707.08566.pdf",
           studyMaterialName: "Assignment 10",
         },
       ],
@@ -110,7 +110,7 @@ const course = {
           kind: "video",
           duration: "12:45",
           src: "https://www.w3schools.com/html/mov_bbb.mp4",
-          studyMaterial: "https://arxiv.org/pdf/1707.08567.pdf",
+          studyMaterial: "https://arxiv.org/pdf/1707.08568.pdf",
           studyMaterialName: "Assignment 7",
         },
         {
@@ -119,7 +119,7 @@ const course = {
           kind: "video",
           duration: "09:12",
           src: "https://www.w3schools.com/html/movie.mp4",
-          studyMaterial: "https://arxiv.org/pdf/1707.08567.pdf",
+          studyMaterial: "https://arxiv.org/pdf/1707.08569.pdf",
           studyMaterialName: "Assignment 6",
         },
         {
@@ -128,7 +128,7 @@ const course = {
           kind: "pdf",
           duration: "09:00",
           src: "https://arxiv.org/pdf/1707.08567.pdf",
-          studyMaterial: "https://arxiv.org/pdf/1707.08567.pdf",
+          studyMaterial: "https://arxiv.org/pdf/1707.08563.pdf",
           studyMaterialName: "Assignment 5",
         },
         {
@@ -146,7 +146,7 @@ const course = {
           kind: "video",
           duration: "11:00",
           src: "https://www.w3schools.com/html/movie.mp4",
-          studyMaterial: "https://arxiv.org/pdf/1707.08567.pdf",
+          studyMaterial: "https://arxiv.org/pdf/1707.08562.pdf",
           studyMaterialName: "Assignment 3",
         },
       ],
@@ -170,7 +170,7 @@ const course = {
           kind: "pdf",
           duration: "12:11",
           src: "https://arxiv.org/pdf/2107.08950.pdf",
-          studyMaterial: "https://arxiv.org/pdf/1707.08567.pdf",
+          studyMaterial: "https://arxiv.org/pdf/1707.08564.pdf",
           studyMaterialName: "Assignment 1",
         },
       ],
@@ -193,6 +193,51 @@ const course = {
   ],
 };
 
+const liveClasses = [
+  {
+    id: "l1",
+    liveClassRecordingLink: "https://www.w3schools.com/html/mov_bbb.mp4",
+    liveClassName: "Live Class 1 Recording - 27-10-2025",
+    duration: "10:05",
+  },
+  {
+    id: "l2",
+    liveClassRecordingLink: "https://www.w3schools.com/html/mov_bbb.mp4",
+    liveClassName: "Live Class 2 Recording - 25-10-2025",
+    duration: "02:10",
+  },
+  {
+    id: "l3",
+    liveClassRecordingLink: "https://www.w3schools.com/html/mov_bbb.mp4",
+    liveClassName: "Live Class 3 Recording - 24-10-2025",
+    duration: "02:20",
+  },
+  {
+    id: "l4",
+    liveClassRecordingLink: "https://www.w3schools.com/html/mov_bbb.mp4",
+    liveClassName: "Live Class 4 Recording - 23-10-2025",
+    duration: "02:30",
+  },
+  {
+    id: "l5",
+    liveClassRecordingLink: "https://www.w3schools.com/html/mov_bbb.mp4",
+    liveClassName: "Live Class 5 Recording - 22-10-2025",
+    duration: "02:40",
+  },
+  {
+    id: "l6",
+    liveClassRecordingLink: "https://www.w3schools.com/html/mov_bbb.mp4",
+    liveClassName: "Live Class 6 Recording - 21-10-2025",
+    duration: "02:50",
+  },
+  {
+    id: "l7",
+    liveClassRecordingLink: "https://www.w3schools.com/html/mov_bbb.mp4",
+    liveClassName: "Live Class 7 Recording - 20-10-2025",
+    duration: "02:60",
+  },
+];
+
 const SectionBtn = ({ icon, active, label, onClick }) => (
   <div
     className={`cdp-secbtn${active ? " active" : ""}`}
@@ -209,6 +254,7 @@ export default function CourseDetailPage() {
   const [midOpen, setMidOpen] = useState(true);
   const [opendModule, setOpenedModule] = useState([]);
   const [selectedLesson, setSelectedLesson] = useState(null);
+  const [openLiveSection, setOpenLiveSection] = useState(false); // Recordings | Upcoming
 
   const toggleModule = (moduleId) => {
     if (opendModule.includes(moduleId)) {
@@ -372,77 +418,127 @@ export default function CourseDetailPage() {
           </header>
 
           <div className="cdp-mid-scroll">
-            {course.modules.map((m) => {
-              return (
-                <article key={m.id} className="cdp-module">
-                  <div
-                    className="cdp-module-top"
-                    onClick={() => toggleModule(m.id)}
+            {activeSection === "LIVECLASSES" && (
+              <article className="cdp-module">
+                <div
+                  className="cdp-module-top"
+                  onClick={() => setOpenLiveSection(!openLiveSection)}
+                >
+                  <h4
+                    className="cdp-module-title"
+                    title={"Online Session Recordings"}
                   >
-                    <h4 className="cdp-module-title" title={m.title}>
-                      {m.title}
-                    </h4>
-                    <span className={`cdp-status`}>
-                      {opendModule.includes(m.id) ? "⬆️" : "⬇️"}
-                    </span>
-                  </div>
-                  {/* <div className="cdp-progress">
-                    <div
-                      className="cdp-progress-bar"
-                      style={{ width: `${pct}%` }}
-                    />
-                  </div>
-                  <div className="cdp-module-meta">
-                    <span>
-                      {m.done}/{m.total} Units
-                    </span>
-                    <span>{pct}%</span>
-                  </div> */}
-                  {opendModule.includes(m.id) && (
-                    <>
-                      <hr />
-                      <div className="cdp-lession-cont">
-                        {m.lessons.map((l) => (
-                          <div
-                            className={`cdp-lession-top${
+                    Online Session Recordings
+                  </h4>
+                  <span className={`cdp-status`}>
+                    {openLiveSection ? "⬆️" : "⬇️"}
+                  </span>
+                </div>
+                {openLiveSection && (
+                  <>
+                    <hr />
+                    <div className="cdp-lession-cont">
+                      {liveClasses.map((l) => (
+                        <div
+                          className={`cdp-lession-top${
+                            selectedLesson == l.id
+                              ? " selected-cdp-lession-top"
+                              : ""
+                          }`}
+                          onClick={() => setSelectedLesson(l.id)}
+                        >
+                          <h4
+                            className={`cdp-lession-title${
                               selectedLesson == l.id
-                                ? " selected-cdp-lession-top"
+                                ? " selected-cdp-lession-title"
                                 : ""
                             }`}
-                            onClick={() => setSelectedLesson(l.id)}
+                            title={l.liveClassName}
                           >
-                            <h4
-                              className={`cdp-lession-title${
+                            {`🛜 ${l.liveClassName}`}
+                          </h4>
+                          <span className={`cdp-lession-status`}>
+                            {l.duration}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </>
+                )}
+              </article>
+            )}
+            {activeSection !== "LIVECLASSES" &&
+              course.modules.map((m) => {
+                return (
+                  <article key={m.id} className="cdp-module">
+                    <div
+                      className="cdp-module-top"
+                      onClick={() => toggleModule(m.id)}
+                    >
+                      <h4 className="cdp-module-title" title={m.title}>
+                        {m.title}
+                      </h4>
+                      <span className={`cdp-status`}>
+                        {opendModule.includes(m.id) ? "⬆️" : "⬇️"}
+                      </span>
+                    </div>
+                    {/* <div className="cdp-progress">
+                        <div
+                          className="cdp-progress-bar"
+                          style={{ width: `${pct}%` }}
+                        />
+                      </div>
+                      <div className="cdp-module-meta">
+                        <span>
+                          {m.done}/{m.total} Units
+                        </span>
+                        <span>{pct}%</span>
+                      </div> */}
+                    {opendModule.includes(m.id) && (
+                      <>
+                        <hr />
+                        <div className="cdp-lession-cont">
+                          {m.lessons.map((l) => (
+                            <div
+                              className={`cdp-lession-top${
                                 selectedLesson == l.id
-                                  ? " selected-cdp-lession-title"
+                                  ? " selected-cdp-lession-top"
                                   : ""
                               }`}
-                              title={l.title}
+                              onClick={() => setSelectedLesson(l.id)}
                             >
-                              {activeSection === "Study Materials"
-                                ? `📄 ${l.studyMaterialName}`
-                                : `📺 ${l.title}`}
-                            </h4>
-                            {activeSection !== "Study Materials" && (
-                              <span className={`cdp-lession-status`}>
-                                {l.duration}
-                              </span>
-                            )}
-                          </div>
-                        ))}
-                      </div>
-                    </>
-                  )}
-                </article>
-              );
-            })}
+                              <h4
+                                className={`cdp-lession-title${
+                                  selectedLesson == l.id
+                                    ? " selected-cdp-lession-title"
+                                    : ""
+                                }`}
+                                title={l.title}
+                              >
+                                {activeSection === "Study Materials"
+                                  ? `📄 ${l.studyMaterialName}`
+                                  : `📺 ${l.title}`}
+                              </h4>
+                              {activeSection !== "Study Materials" && (
+                                <span className={`cdp-lession-status`}>
+                                  {l.duration}
+                                </span>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      </>
+                    )}
+                  </article>
+                );
+              })}
           </div>
         </section>
 
         {/* ---------- RIGHT: Content view ---------- */}
         <section className="cdp-right" aria-label="Content view">
           {/* Card that switches based on left selection */}
-          {activeSection === "LIVECLASSES" && (
+          {/* {activeSection === "LIVECLASSES" && (
             <div className="cdp-card">
               <h3>Course LIVECLASSES</h3>
               <p className="cdp-desc">
@@ -456,9 +552,10 @@ export default function CourseDetailPage() {
                 <li>Certificate upon completion</li>
               </ul>
             </div>
-          )}
+          )} */}
 
-          {activeSection === "Self-Paced" && (
+          {(activeSection === "LIVECLASSES" ||
+            activeSection === "Self-Paced") && (
             <div className="cdp-card" style={{ height: `94%` }}>
               {/* <h3>Self-Paced Player</h3> */}
               <div className="cdp-video-wrap">
